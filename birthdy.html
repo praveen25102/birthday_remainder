@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Reminder 🎉</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    input, button { padding: 10px; margin: 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>🎂 Birthday Reminder 🎂</h1>
+  <p>Enter your birthday:</p>
+  <input type="date" id="bday">
+  <button onclick="checkBirthday()">Check</button>
+  <h2 id="result"></h2>
+
+  <script>
+    function checkBirthday() {
+      let input = document.getElementById("bday").value;
+      if(!input) return alert("Please select a date!");
+      
+      let today = new Date();
+      let bday = new Date(input);
+      bday.setFullYear(today.getFullYear());
+
+      if (bday < today) {
+        bday.setFullYear(today.getFullYear() + 1); // next year     
+      }
+
+      let diff = Math.ceil((bday - today) / (1000 * 60 * 60 * 24));
+
+      if (diff === 0) {
+        document.getElementById("result").innerText = "🎉 Happy Birthday! 🎉";
+      } else {
+        document.getElementById("result").innerText = diff + " days left for your birthday!";
+      }
+    }
+  </script>
+</body>
+</html>
